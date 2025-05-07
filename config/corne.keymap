@@ -100,6 +100,15 @@
             bindings = <&SHFT_CLN>, <&SHFT_SEMI>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        delayed: delayed {
+            compatible = "zmk,behavior-hold-tap";
+            label = "DELAYED_WIN";
+            #binding-cells = <2>;
+            tapping-term-ms = <500>;    // 500ms Verzögerung
+            flavor = "tap-unless-interrupted";
+            bindings = <&kp>, <&none>;  // Erste Bindung (Hold) ist WIN, zweite (Tap) tut nichts
+        };
     };
 
     keymap {
@@ -110,70 +119,70 @@
             // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Z  |  U   |  I   |  O   |  P   | BKSP |
             // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K   |  L   |  :;  | SHFT |
             // | SHFT |  Y  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,<  |  .>  |  _-  | ESC  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+            //                    | GUI |  M1 | SPC |   | ENT |  M2  | ALT |
 
             display-name = "0";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Z    &kp U  &kp I    &kp O    &kp P       &kp BSPC
-&kp LSHFT  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J  &kp K    &kp L    &CLN_SEMI   &kp RSHIFT
-&kp LCTRL  &kp Y  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &CMA_LT  &PRD_GT  &UDSCR_MNS  &kp ESC
-                         &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
+&kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T        &kp Z    &kp U  &kp I          &kp O    &kp P       &kp BSPC
+&kp LSHFT  &kp A  &kp S  &kp D          &kp F  &kp G        &kp H    &kp J  &kp K          &kp L    &CLN_SEMI   &kp RSHIFT
+&kp LCTRL  &kp Y  &kp X  &kp C          &kp V  &kp B        &kp N    &kp M  &CMA_LT        &PRD_GT  &UDSCR_MNS  &kp ESC
+                         &delayed LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &delayed RALT
             >;
         };
 
         layer_minus_1 {
             // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            // | BRI_DN  | BRI_AUTO  | BRI_UP  |  PREV  |  PP  |  NEXT  |   |  1  |  2  |  3  |  +  |  -  | DEL |
+            // | BRI_MIN | BACKLIGHT | BRI_MAX | VOL_DN | MUTE | VOL_UP |   |  4  |  5  |  6  |  *  |  /  |  =  |
+            // | ASPECT  |    PIP    |   PWR   | SLEEP  |LOGOFF|  LOCK  |   |  7  |  8  |  9  |  0  |  ,  |  .  |
+            //                                 |        |      |   SPC  |   | ENT |  M3 |     |
 
             display-name = "-1";
             bindings = <
-&kp TAB     &trans        &trans        &trans        &trans        &trans          &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PLUS         &kp MINUS  &kp DEL
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK     &kp SLASH  &trans
-&kp LSHFT   &trans        &trans        &trans        &trans        &trans          &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_NUMBER_0  &trans     &trans
-                                        &kp LGUI      &trans        &kp SPACE       &kp RET          &mo 3            &kp RALT
+&cp C_BRI_DN   &cp C_BRI_AUTO          &cp C_BRI_UP   &cp C_PREV    &cp C_PP         &cp C_NEXT     &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_PLUS      &kp KP_MINUS  &kp DEL
+&cp C_BRI_MIN  &cp C_BACKLIGHT_TOGGLE  &cp C_BRI_MAX  &cp C_VOL_DN  &cp C_MUTE       &cp C_VOL_UP   &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_MULTIPLY  &kp KP_DIVIDE &kp KP_EQUAL
+&cp C_ASPECT   &cp C_PIP               &cp C_PWR      &cp C_SLEEP   &cp C_AL_LOGOFF  &cp C_AL_LOCK  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_N0        &kp KP_COMMA  &kp KP_DOT
+                                                      &trans        &trans           &kp SPACE      &kp RET    &mo 3      &trans
             >;
         };
 
         layer_1 {
             // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
+            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | DEL |
             // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
             // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            //                    |     |  M4 | SPC |   | ENT |     |     |
 
             display-name = "1";
             bindings = <
-&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
+&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp DEL
 &kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
 &kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &kp TILDE
-                             &kp LGUI  &mo 4     &kp SPACE    &kp RET    &trans     &kp RALT
+                             &trans    &mo 4     &kp SPACE    &kp RET    &trans     &trans
             >;
         };
 
         layer_minus_2 {
             // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            // 
+            // |  TAB |  @  |     |  €  |     |     |   |     |   ü  |      |  ö  |       |      |
+            // | BTCLR|  ä  |  ß  |     |     |     |   |     | LEFT | DOWN |  UP | RIGHT |      |
+            // | SHFT |     |     |     |     |     |   |     |  µ   |      |     |       |      |
+            //                    |     |     | SPC |   | ENT |      |      |
             display-name = "-2";
             bindings = <
-&trans  &kp AT_SIGN      &trans      &kp DE_EURO  &trans  &trans    &trans  &kp DE_U_UMLAUT   &trans  &kp DE_O_UMLAUT   &trans  &trans
-&trans  &kp DE_A_UMLAUT  &kp DE_SZ   &trans       &trans  &trans    &trans  &trans            &trans  &trans            &trans  &trans
-&trans  &trans           &trans      &trans       &trans  &trans    &trans  &trans            &trans  &trans            &trans  &trans
+&trans  &kp AT_SIGN      &trans      &kp DE_EURO  &trans  &trans    &trans  &kp DE_U_UMLAUT   &trans    &kp DE_O_UMLAUT  &trans     &trans
+&trans  &kp DE_A_UMLAUT  &kp DE_SZ   &trans       &trans  &trans    &trans  &kp LEFT          &kp DOWN  &kp UP           &kp RIGHT  &trans
+&trans  &trans           &trans      &trans       &trans  &trans    &trans  &kp DE_MICRO      &trans    &trans           &trans     &trans
                                      &trans       &trans  &trans    &trans  &trans            &trans
             >;
         };
 
         layer_2 {
             // -----------------------------------------------------------------------------------------
-            // |  F1  | F2  |  F3 | F4  |  F5 |  F6 |   | F7  | F8  |  F9 |  F10|  F11| F12 |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            // 
+            // |  F1  | F2  |  F3 | F4  |  F5 |  F6 |   | F7  | F8  | F9  | F10 | F11 | F12 |
+            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |     |
+            // |      |     |     |     |     |     |   |     |     |     |     |     |     |
+            //                    |     |     | SPC |   | ENT |     |     |
             display-name = "2";
             bindings = <
 &kp F1      &kp F2        &kp F3        &kp F4        &kp F5        &kp F6          &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
