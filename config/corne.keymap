@@ -131,7 +131,7 @@
             // | CTRL |  ?  |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `  |
             // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~  |
             //                    |     |  M4 | SPC |   | ENT |     |     |
-!"§$%&\()=
+
             display-name = "1";
             bindings = <
 &kp TAB    &kp EXCL      &kp AT  &kp HASH  &kp DLLR   &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTERISK  &kp LPAR  &kp RPAR  &kp DEL
@@ -149,7 +149,7 @@
             //                   |     |     | SPC |   | ENT |      |      |
             display-name = "-2";
             bindings = <
-&trans  &kp AT_SIGN      &trans      &kp DE_EURO  &trans  &trans    &trans  &kp DE_U_UMLAUT   &trans    &kp DE_O_UMLAUT  &trans     &trans
+&trans  &kp DE_AT        &trans      &kp DE_EURO  &trans  &trans    &trans  &kp DE_U_UMLAUT   &trans    &kp DE_O_UMLAUT  &trans     &trans
 &trans  &kp DE_A_UMLAUT  &kp DE_SZ   &trans       &trans  &trans    &trans  &kp LEFT          &kp DOWN  &kp UP           &kp RIGHT  &trans
 &trans  &trans           &trans      &trans       &trans  &trans    &trans  &kp DE_MICRO      &trans    &trans           &trans     &trans
                                      &trans       &trans  &trans    &trans  &trans            &trans
