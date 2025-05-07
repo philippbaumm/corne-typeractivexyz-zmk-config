@@ -7,74 +7,179 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include "keys_de.h"
 
 / {
+    macros {
+        SHFT_UDSCR: SHFT_UDSCR {
+            label = "SHIFT_UNDERSCORE";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp UNDERSCORE>;
+        };
+        
+        SHFT_MNS: SHFT_MNS {
+            label = "SHIFT_MINUS";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp MINUS>;
+        };
+        
+        SHFT_CMA: SHFT_CMA {
+            label = "SHIFT_COMMA";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp COMMA>;
+        };
+        
+        SHFT_LT: SHFT_LT {
+            label = "SHIFT_LESS_THAN";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LT>;
+        };
+        
+        SHFT_PRD: SHFT_PRD {
+            label = "SHIFT_PERIOD";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp PERIOD>;
+        };
+        
+        SHFT_GT: SHFT_GT {
+            label = "SHIFT_GREATER_THAN";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp GT>;
+        };
+        
+        SHFT_CLN: SHFT_CLN {
+            label = "SHIFT_COLON";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp COLON>;
+        };
+        
+        SHFT_SEMI: SHFT_SEMI {
+            label = "SHIFT_SEMICOLON";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp SEMI>;
+        };
+    };
+    
+    behaviors {
+        UDSCR_MNS: UDSCR_MNS {
+            compatible = "zmk,behavior-mod-morph";
+            label = "INVERTED_UNDERSCORE_MINUS";
+            #binding-cells = <0>;
+            bindings = <&SHFT_UDSCR>, <&SHFT_MNS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        CMA_LT: CMA_LT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COMMA_LESS_THAN";
+            #binding-cells = <0>;
+            bindings = <&SHFT_CMA>, <&SHFT_LT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        
+        PRD_GT: PRD_GT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "PERIOD_GREATER_THAN";
+            #binding-cells = <0>;
+            bindings = <&SHFT_PRD>, <&SHFT_GT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        
+        CLN_SEMI: CLN_SEMI {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COLON_SEMI";
+            #binding-cells = <0>;
+            bindings = <&SHFT_CLN>, <&SHFT_SEMI>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        layer_0 {
             // -----------------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Z  |  U   |  I   |  O   |  P   | BKSP |
+            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K   |  L   |  :;  | SHFT |
+            // | SHFT |  Y  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,<  |  .>  |  _-  | ESC  |
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
-            display-name = "Base";
+            display-name = "0";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Z    &kp U  &kp I     &kp O      &kp P     &kp BSPC
-&kp LSHFT  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J  &kp K     &kp L      &kp UP    &kp RSHIFT
-&kp LCTRL  &kp Y  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &kp LEFT  &kp RIGHT  &kp DOWN  &kp ESC
+&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Z    &kp U  &kp I       &kp O       &kp P          &kp BSPC
+&kp LSHFT  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J  &kp K       &kp L       &kp CLN_SEMI   &kp RSHIFT
+&kp LCTRL  &kp Y  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &kp CMA_LT  &kp PRD_GT  &kp UDSCR_MNS  &kp ESC
                          &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
             >;
-        };
+        }
 
-        lower_layer {
+        layer_minus_1 {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
             // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
             // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
-            display-name = "Lower";
+            display-name = "-1";
             bindings = <
-&kp TAB     &trans        &trans        &trans        &trans        &trans          &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &trans           &trans  &kp DEL
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &trans           &trans  &trans
+&kp TAB     &trans        &trans        &trans        &trans        &trans          &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &PLUS            &MINUS  &kp DEL
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &ASTERISK        &SLASH  &trans
 &kp LSHFT   &trans        &trans        &trans        &trans        &trans          &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_NUMBER_0  &trans  &trans
                                         &kp LGUI      &trans        &kp SPACE       &kp RET          &mo 3            &kp RALT
             >;
         };
 
-        raise_layer {
+        layer_1 {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
             // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
             // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
-            display-name = "Raise";
+            display-name = "1";
             bindings = <
 &kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
 &kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
 &kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &kp TILDE
                              &kp LGUI  &mo 4     &kp SPACE    &kp RET    &trans     &kp RALT
             >;
-        };
+        }
 
-        layer_3 {
+        layer_minus_2 {
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+            // 
+            display-name = "-2";
             bindings = <
-&trans  &kp AT_SIGN  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans       &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans       &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                             &trans  &trans  &trans    &trans  &trans  &trans
+&trans  &kp AT_SIGN      &trans      &kp DE_EURO  &trans  &trans    &trans  &kp DE_U_UMLAUT   &trans  &kp DE_O_UMLAUT   &trans  &trans
+&trans  &kp DE_A_UMLAUT  &kp DE_SZ   &trans       &trans  &trans    &trans  &trans            &trans  &trans            &trans  &trans
+&trans  &trans           &trans      &trans       &trans  &trans    &trans  &trans            &trans  &trans            &trans  &trans
+                                     &trans       &trans  &trans    &trans  &trans            &trans
             >;
         };
 
-        layer_4 {
+        layer_2 {
+            // -----------------------------------------------------------------------------------------
+            // |  F1  | F2  |  F3 | F4  |  F5 |  F6 |   | F7  | F8  |  F9 |  F10|  F11| F12 |
+            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+            // 
+            display-name = "2";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+&kp F1      &kp F2        &kp F3        &kp F4        &kp F5        &kp F6          &kp F7  &kp F8  &kp F8  &kp F10  &kp F11  &kp F12
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans   &trans   &trans
+&trans      &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans   &trans   &trans
+                                        &trans        &trans        &trans          &trans  &trans  &trans
             >;
         };
     };
