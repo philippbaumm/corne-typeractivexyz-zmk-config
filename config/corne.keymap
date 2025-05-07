@@ -12,56 +12,48 @@
 / {
     macros {
         SHFT_UDSCR: SHFT_UDSCR {
-            //label = "SHIFT_UNDERSCORE";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp UNDERSCORE>;
         };
         
         SHFT_MNS: SHFT_MNS {
-            //label = "SHIFT_MINUS";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp MINUS>;
         };
         
         SHFT_CMA: SHFT_CMA {
-            //label = "SHIFT_COMMA";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp COMMA>;
         };
         
         SHFT_LT: SHFT_LT {
-            //label = "SHIFT_LESS_THAN";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp LT>;
         };
         
         SHFT_PRD: SHFT_PRD {
-            //label = "SHIFT_PERIOD";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp PERIOD>;
         };
         
         SHFT_GT: SHFT_GT {
-            //label = "SHIFT_GREATER_THAN";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp GT>;
         };
         
         SHFT_CLN: SHFT_CLN {
-            //label = "SHIFT_COLON";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp COLON>;
         };
         
         SHFT_SEMI: SHFT_SEMI {
-            //label = "SHIFT_SEMICOLON";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp SEMI>;
@@ -71,7 +63,6 @@
     behaviors {
         UDSCR_MNS: UDSCR_MNS {
             compatible = "zmk,behavior-mod-morph";
-            //label = "INVERTED_UNDERSCORE_MINUS";
             #binding-cells = <0>;
             bindings = <&SHFT_UDSCR>, <&SHFT_MNS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
@@ -79,7 +70,6 @@
 
         CMA_LT: CMA_LT {
             compatible = "zmk,behavior-mod-morph";
-            //label = "COMMA_LESS_THAN";
             #binding-cells = <0>;
             bindings = <&SHFT_CMA>, <&SHFT_LT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
@@ -87,7 +77,6 @@
         
         PRD_GT: PRD_GT {
             compatible = "zmk,behavior-mod-morph";
-            //label = "PERIOD_GREATER_THAN";
             #binding-cells = <0>;
             bindings = <&SHFT_PRD>, <&SHFT_GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
@@ -95,18 +84,9 @@
         
         CLN_SEMI: CLN_SEMI {
             compatible = "zmk,behavior-mod-morph";
-            //label = "COLON_SEMI";
             #binding-cells = <0>;
             bindings = <&SHFT_CLN>, <&SHFT_SEMI>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        delayed_lgui: delayed_key {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <500>;
-            flavor = "tap-unless-interrupted";
-            bindings = <&kp LGUI>, <&none>;
         };
     };
 
@@ -125,7 +105,7 @@
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T        &kp Z    &kp U  &kp I          &kp O    &kp P       &kp BSPC
 &kp LSHFT  &kp A  &kp S  &kp D          &kp F  &kp G        &kp H    &kp J  &kp K          &kp L    &CLN_SEMI   &kp RSHIFT
 &kp LCTRL  &kp Y  &kp X  &kp C          &kp V  &kp B        &kp N    &kp M  &CMA_LT        &PRD_GT  &UDSCR_MNS  &kp ESC
-                         &delayed_lgui  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
+                         &kp LGUI       &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
             >;
         };
 
