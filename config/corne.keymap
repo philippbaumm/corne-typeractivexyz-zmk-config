@@ -92,6 +92,7 @@
 
         delayed: delayed {
             compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <500>;
             bindings = <&kp>, <&none>;
