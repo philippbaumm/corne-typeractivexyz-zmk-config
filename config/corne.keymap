@@ -120,32 +120,32 @@
 
         layer_1 {
             // -----------------------------------------------------------------------------------------
-            // |  $   |  !  |  "  |  \  |  (  |  )  |   |  1  |  2  |  3  |  +  |  -  | DEL |
-            // |  `   |  ?  |  '  |  #  |  [  |  ]  |   |  4  |  5  |  6  |  *  |  /  |  =  |
-            // |  ~   |  %  |  &  | "|" |  {  |  }  |   |  7  |  8  |  9  |  0  |  ,  |  .  |
-            //                    |     |  M3 | SPC |   | ENT |     |     |
-
-            display-name = "1";
-            bindings = <
-&kp DE_DLLR   &kp DE_EXCL   &kp DE_DQT   &kp DE_SLASH  &kp DE_LPAR  &kp DE_RPAR      &kp N1   &kp N2  &kp N3  &kp KP_PLUS      &kp KP_MINUS  &kp DEL
-&kp DE_GRAVE  &kp DE_QMARK  &kp DE_SQT   &kp DE_HASH   &kp DE_LBKT  &kp DE_RBKT      &kp N4   &kp N5  &kp N6  &kp KP_MULTIPLY  &kp KP_DIVIDE &kp KP_EQUAL
-&kp DE_TILDE  &kp DE_PRCNT  &kp DE_AMPS  &kp DE_PIPE   &kp DE_LBRC  &kp DE_RBRC      &kp N7   &kp N8  &kp N9  &kp N0           &kp KP_COMMA  &kp KP_DOT
-                                         &none         &none        &kp SPACE        &kp RET  &mo 3   &none
-            >;
-        };
-
-        layer_2 {
-            // -----------------------------------------------------------------------------------------
             // |     |  @  |     |  €  |     |     |   |     |   ü  |      |  ö  |       | DEL  |
             // | SHFT|  ä  |  ß  |     |     |     |   |     | LEFT | DOWN |  UP | RIGHT | SHFT |
             // |     |     |     |     |     |     |   |     |  µ   |      |     |       | BSPC |
             //                   |     |     |     |   |     |  M3  |      |
-            display-name = "2";
+            display-name = "1";
             bindings = <
 &none      &kp DE_AT        &none      &kp DE_EURO  &none   &none    &none   &kp DE_U_UMLAUT   &none     &kp DE_O_UMLAUT  &none      &kp DEL
 &kp LSHFT  &kp DE_A_UMLAUT  &kp DE_SZ  &none        &none   &none    &none   &kp LEFT          &kp DOWN  &kp UP           &kp RIGHT  &kp RSHIFT
 &none      &none            &none      &none        &none   &none    &none   &kp DE_MICRO      &none     &none            &none      &kp BSPC
                                        &mo 4        &trans  &trans   &trans  &trans            &mo 5
+            >;
+        };
+
+        layer_2 {
+            // -----------------------------------------------------------------------------------------
+            // |  $   |  !  |  "  |  \  |  (  |  )  |   |  1  |  2  |  3  |  +  |  -  | DEL |
+            // |  `   |  ?  |  '  |  #  |  [  |  ]  |   |  4  |  5  |  6  |  *  |  /  |  =  |
+            // |  ~   |  %  |  &  | "|" |  {  |  }  |   |  7  |  8  |  9  |  0  |  ,  |  .  |
+            //                    |     |  M3 | SPC |   | ENT |     |     |
+
+            display-name = "2";
+            bindings = <
+&kp DE_DLLR   &kp DE_EXCL   &kp DE_DQT   &kp DE_SLASH  &kp DE_LPAR  &kp DE_RPAR      &kp N1   &kp N2  &kp N3  &kp KP_PLUS      &kp KP_MINUS  &kp DEL
+&kp DE_GRAVE  &kp DE_QMARK  &kp DE_SQT   &kp DE_HASH   &kp DE_LBKT  &kp DE_RBKT      &kp N4   &kp N5  &kp N6  &kp KP_MULTIPLY  &kp KP_DIVIDE &kp KP_EQUAL
+&kp DE_TILDE  &kp DE_PRCNT  &kp DE_AMPS  &kp DE_PIPE   &kp DE_LBRC  &kp DE_RBRC      &kp N7   &kp N8  &kp N9  &kp N0           &kp KP_COMMA  &kp KP_DOT
+                                         &none         &none        &kp SPACE        &kp RET  &mo 3   &none
             >;
         };
 
